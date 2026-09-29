@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import { t, other, type Lang } from '../i18n';
+import { site } from '../site';
+
+interface Props { lang: Lang; title?: string; description?: string; path?: string; noindex?: boolean; }
+const { lang, title, description, path = '', noindex = false } = Astro.props;
+const d = t[lang];
+const pageTitle = title ? `${title} · ${site.name}` : d.title;
+const desc = description ?? d.description;
+const url = (l: Lang) => new URL(`/${l}/${path}`, site.url).href;
+const ogImage = new URL('/og.png', site.url).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'UX/UI Designer',
+  url: site.url,
+  sameAs: [site.linkedin, site.instagram],
+};
+---
+<!doctype html>
+<html lang={d.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={url(lang)} />
+    <link rel="alternate" hreflang={lang} href={url(lang)} />
+    <link rel="alternate" hreflang={other(lang)} href={url(other(lang))} />
+    <link rel="alternate" hreflang="x-default" href={url('es')} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={url(lang)} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script is:inline>
+      try {
+        var s = localStorage.getItem('theme');
+        var dark = s ? s === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      } catch (e) {}
+    </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>
+    <script is:inline define:vars={{ gaId: site.gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{d.skip}</a>
+    <slot name="header" />
+    <main id="main"><slot /></main>
+    <slot name="footer" />
+    <script is:inline>
+      document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try { localStorage.setItem('theme', next); } catch (e) {}
+        });
+      });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('[data-track]');
+        if (a && window.gtag) gtag('event', a.dataset.track);
+      });
+    </script>
+  </body>
+</html>

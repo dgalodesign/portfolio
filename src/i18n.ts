@@ -1,0 +1,203 @@
+export const langs = ['es', 'en'] as const;
+export type Lang = (typeof langs)[number];
+
+export const t = {
+  es: {
+    htmlLang: 'es',
+    title: "Edgar D' Galo · Diseñador UX/UI",
+    description:
+      "Portafolio de Edgar D' Galo, diseñador UX/UI. Casos de estudio de producto, investigación y diseño de interfaces.",
+    nav: { work: 'Proyectos', about: 'Sobre mí', contact: 'Contacto' },
+    available: 'Disponible para nuevos proyectos',
+    unavailable: 'No disponible por ahora',
+    hero: {
+      kicker: 'Diseñador UX/UI',
+      title: 'Diseño productos digitales que la gente entiende y usa.',
+      sub: 'Investigación, arquitectura de información y diseño de interfaces enfocados en resultados de negocio medibles.',
+      ctaWork: 'Ver proyectos',
+      ctaContact: 'Hablemos',
+    },
+    work: { title: 'Proyectos seleccionados', read: 'Ver caso', draft: 'Borrador' },
+    services: {
+      title: 'Cómo puedo ayudarte',
+      items: [
+        ['Research de usuarios', 'Entrevistas, pruebas de usabilidad y síntesis accionable.'],
+        ['Diseño de producto', 'Flujos, wireframes, prototipos y UI lista para desarrollo.'],
+        ['Design systems', 'Componentes y tokens consistentes que escalan con el equipo.'],
+      ],
+    },
+    tools: 'Herramientas',
+    about: {
+      title: 'Sobre mí',
+      hello: '¡Hola otra vez! 👋',
+      lead: "Soy Edgar D' Galo, un UX/UI Product Designer",
+      body: [
+        'Con más de 4 años de experiencia en la creación de productos digitales. Me motiva la resolución de problemas complejos y la creación de soluciones eficaces y estilizadas que satisfagan las necesidades de los usuarios y aporten al crecimiento del negocio.',
+        'A lo largo de mi carrera, he trabajado en diversos proyectos que abarcan desde aplicaciones móviles hasta el diseño de sitios web, siempre poniendo especial atención en la experiencia del usuario. Dispongo de una serie de habilidades que me han permitido mejorar la tasa de conversión y reducir la tasa de abandono de los usuarios en cada proyecto; además de aportar valor y conocimiento a cada equipo en los que he formado parte.',
+        'Me considero una persona curiosa, creativa, analítica y meticulosa, con una gran pasión por el diseño y la tecnología. Me gusta estar actualizado con las últimas tendencias y herramientas de diseño para asegurarme de que mis proyectos siempre estén a la altura.',
+        'Me emociona el poder trabajar en proyectos innovadores y ayudar a las empresas a mejorar la calidad de sus productos y servicios. Estoy seguro de que mi experiencia y habilidades pueden ser un gran aporte para cualquier equipo.',
+      ],
+      cv: 'Descargar CV',
+      experience: 'Experiencia',
+      now: 'Actualidad',
+      jobs: [
+        ['UX/UI Designer', 'QA-BIT', 'Madrid, España', 'Dic 2022 – Actualidad', ['Diseñador junior de un equipo de desarrollo de software.', 'He aportado a la optimización del flujo de trabajo y la vinculación armónica entre los grupos de desarrollo y diseño.', 'Introduje conocimientos sobre Design Tokens, la importancia de su empleo y cómo trabajar con ellos.']],
+        ['UX/UI Designer', 'Recharge Phones', 'España', '2022', ['Diseño de la aplicación móvil oficial y sitio web de la empresa.']],
+        ['UX/UI Designer', 'Walak', 'Estados Unidos', '2022', ['Diseño del sitio web de gestión, aplicación móvil y página de presentación de la empresa.']],
+        ['UI Designer', 'Flower Fairy', 'Estados Unidos', '2022', ['Diseño del sitio web de gestión, aplicación móvil y página de presentación de la empresa.']],
+        ['UX/UI Designer', 'UnivCell Inc.', 'Estados Unidos', '2021 – 2022', ['Diseño del sitio web, aplicación móvil y página web de lanzamiento de la apk propias de la empresa.']],
+        ['UI Designer', 'Apklis', 'Cuba', '2021', ['Rediseño de la aplicación móvil.']],
+        ['UX/UI Designer', 'Techiegeeks', 'Estados Unidos', '2020 – 2022', ['Diseño de identidades, aplicaciones móviles, páginas web y animación de marcas.']],
+      ],
+      skills: 'Habilidades',
+      skillGroups: [
+        ['Generales', ['Colaboratividad', 'Presentación de proyectos', 'Proactividad', 'Comunicación']],
+        ['UX Designer', ['Wireframing', 'Low-fi prototype', 'Usability testing', 'User flow', 'FigJam']],
+        ['UI Designer', ['High-fi prototype', 'Design system', 'UI mockup', 'Interaction design', 'Figma']],
+      ],
+      awards: 'Premios',
+      awardList: [['Nueva Identidad de la APK Viajando', 'https://www.facebook.com/sitrans.cuba/posts/pfbid0jaEAqz6qaUzGfX8DT1n415mKQNRYSQFdngMi2tb1tLuaVfk9NVJHMnpALPFNpkNNl', 'Ver reconocimiento']],
+      education: 'Educación',
+      eduList: [
+        ['Diseño de Comunicación Visual', 'Instituto Superior de Diseño, La Habana, Cuba · 2017 – 2021', '', ''],
+        ['Curso de Figma', 'Platzi', 'https://platzi.com/p/dgalodesign/curso/1961-figma/diploma/detalle/', 'Ver certificado'],
+        ['Curso de Design Thinking', 'Platzi', 'https://platzi.com/p/dgalodesign/curso/1210-design-thinking/diploma/detalle/', 'Ver certificado'],
+      ],
+    },
+    contact: {
+      title: 'Trabajemos juntos',
+      sub: 'Cuéntame sobre tu proyecto o vacante. Respondo en un máximo de 48 horas.',
+      name: 'Nombre',
+      email: 'Email',
+      message: 'Mensaje',
+      send: 'Enviar mensaje',
+      sending: 'Enviando…',
+      ok: '¡Gracias! Te responderé pronto.',
+      err: 'No se pudo enviar. Escríbeme directamente por email.',
+      cv: 'Descargar CV (PDF)',
+      or: 'O escríbeme a',
+    },
+    case: {
+      back: '← Todos los proyectos',
+      role: 'Rol',
+      year: 'Año',
+      team: 'Equipo',
+      draftNote:
+        'Este caso es un borrador con estructura guiada. Reemplaza los textos entre corchetes con información y métricas reales.',
+    },
+    footer: '© ' + new Date().getFullYear() + " Edgar D' Galo",
+    privacy: 'Privacidad',
+    theme: 'Cambiar tema',
+    skip: 'Saltar al contenido',
+    notFound: { title: 'Página no encontrada', back: 'Volver al inicio' },
+    privacyPage: {
+      title: 'Política de privacidad',
+      body: [
+        'Este sitio usa Google Analytics para medir visitas de forma agregada. No se venden datos a terceros.',
+        'Si envías el formulario de contacto, tu nombre, email y mensaje se usan únicamente para responderte.',
+        'Puedes solicitar la eliminación de tus datos escribiendo al email de contacto.',
+      ],
+    },
+  },
+  en: {
+    htmlLang: 'en',
+    title: "Edgar D' Galo · UX/UI Designer",
+    description:
+      "Portfolio of Edgar D' Galo, UX/UI designer. Product case studies, research and interface design.",
+    nav: { work: 'Work', about: 'About', contact: 'Contact' },
+    available: 'Available for new projects',
+    unavailable: 'Currently unavailable',
+    hero: {
+      kicker: 'UX/UI Designer',
+      title: 'I design digital products people understand and use.',
+      sub: 'Research, information architecture and interface design focused on measurable business outcomes.',
+      ctaWork: 'View work',
+      ctaContact: "Let's talk",
+    },
+    work: { title: 'Selected work', read: 'View case', draft: 'Draft' },
+    services: {
+      title: 'How I can help',
+      items: [
+        ['User research', 'Interviews, usability testing and actionable synthesis.'],
+        ['Product design', 'Flows, wireframes, prototypes and dev-ready UI.'],
+        ['Design systems', 'Consistent components and tokens that scale with the team.'],
+      ],
+    },
+    tools: 'Tools',
+    about: {
+      title: 'About me',
+      hello: 'Hello again! 👋',
+      lead: "I'm Edgar D' Galo, a UX/UI Product Designer",
+      body: [
+        'With over 4 years of experience creating digital products. I am driven by solving complex problems and crafting effective, polished solutions that meet user needs and contribute to business growth.',
+        'Throughout my career I have worked on projects ranging from mobile apps to websites, always paying special attention to user experience. My skills have helped me improve conversion rates and reduce user drop-off in every project, while bringing value and knowledge to each team I have been part of.',
+        'I consider myself curious, creative, analytical and meticulous, with a deep passion for design and technology. I like to stay up to date with the latest design trends and tools so my projects are always up to standard.',
+        'I am excited to work on innovative projects and help companies improve the quality of their products and services. I am confident my experience and skills can be a great asset to any team.',
+      ],
+      cv: 'Download CV',
+      experience: 'Experience',
+      now: 'Present',
+      jobs: [
+        ['UX/UI Designer', 'QA-BIT', 'Madrid, Spain', 'Dec 2022 – Present', ['Junior designer in a software development team.', 'I have contributed to optimizing the workflow and the harmonious link between the development and design groups.', 'I introduced Design Tokens to the team: why they matter and how to work with them.']],
+        ['UX/UI Designer', 'Recharge Phones', 'Spain', '2022', ["Design of the company's official mobile app and website."]],
+        ['UX/UI Designer', 'Walak', 'United States', '2022', ["Design of the management website, mobile app and the company's presentation page."]],
+        ['UI Designer', 'Flower Fairy', 'United States', '2022', ["Design of the management website, mobile app and the company's presentation page."]],
+        ['UX/UI Designer', 'UnivCell Inc.', 'United States', '2021 – 2022', ["Design of the website, mobile app and launch web page for the company's own apk."]],
+        ['UI Designer', 'Apklis', 'Cuba', '2021', ['Mobile app redesign.']],
+        ['UX/UI Designer', 'Techiegeeks', 'United States', '2020 – 2022', ['Design of identities, mobile apps, websites and brand animation.']],
+      ],
+      skills: 'Skills',
+      skillGroups: [
+        ['General', ['Collaboration', 'Project presentation', 'Proactivity', 'Communication']],
+        ['UX Designer', ['Wireframing', 'Low-fi prototype', 'Usability testing', 'User flow', 'FigJam']],
+        ['UI Designer', ['High-fi prototype', 'Design system', 'UI mockup', 'Interaction design', 'Figma']],
+      ],
+      awards: 'Awards',
+      awardList: [['New Identity for the Viajando APK', 'https://www.facebook.com/sitrans.cuba/posts/pfbid0jaEAqz6qaUzGfX8DT1n415mKQNRYSQFdngMi2tb1tLuaVfk9NVJHMnpALPFNpkNNl', 'See recognition']],
+      education: 'Education',
+      eduList: [
+        ['Visual Communication Design', 'Instituto Superior de Diseño, Havana, Cuba · 2017 – 2021', '', ''],
+        ['Figma Course', 'Platzi', 'https://platzi.com/p/dgalodesign/curso/1961-figma/diploma/detalle/', 'See certificate'],
+        ['Design Thinking Course', 'Platzi', 'https://platzi.com/p/dgalodesign/curso/1210-design-thinking/diploma/detalle/', 'See certificate'],
+      ],
+    },
+    contact: {
+      title: "Let's work together",
+      sub: 'Tell me about your project or role. I reply within 48 hours.',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      send: 'Send message',
+      sending: 'Sending…',
+      ok: "Thanks! I'll get back to you soon.",
+      err: 'Could not send. Please email me directly.',
+      cv: 'Download CV (PDF)',
+      or: 'Or email me at',
+    },
+    case: {
+      back: '← All projects',
+      role: 'Role',
+      year: 'Year',
+      team: 'Team',
+      draftNote:
+        'This case is a guided draft. Replace bracketed text with real information and metrics.',
+    },
+    footer: '© ' + new Date().getFullYear() + " Edgar D' Galo",
+    privacy: 'Privacy',
+    theme: 'Toggle theme',
+    skip: 'Skip to content',
+    notFound: { title: 'Page not found', back: 'Back home' },
+    privacyPage: {
+      title: 'Privacy policy',
+      body: [
+        'This site uses Google Analytics to measure visits in aggregate. No data is sold to third parties.',
+        'If you submit the contact form, your name, email and message are used only to reply to you.',
+        'You can request deletion of your data by emailing the contact address.',
+      ],
+    },
+  },
+} as const;
+
+export const tools = ['Figma', 'FigJam', 'Prototyping', 'User research', 'Design systems', 'Accessibility', 'HTML/CSS', 'AI-assisted design'];
+
+export const other = (l: Lang): Lang => (l === 'es' ? 'en' : 'es');

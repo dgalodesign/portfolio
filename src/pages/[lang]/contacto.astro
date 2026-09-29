@@ -1,0 +1,62 @@
+---
+import Page from '../../layouts/Page.astro';
+import { t, langs, type Lang } from '../../i18n';
+import { site } from '../../site';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = t[lang];
+const c = d.contact;
+---
+<Page lang={lang} title={c.title} path="contacto/">
+  <section class="block">
+    <div class="wrap">
+      <h1 style="font-size: clamp(2.4rem, 7vw, 5rem); margin-bottom: 16px">{c.title}</h1>
+      <p style="color: var(--muted); font-size: 1.15rem; margin-bottom: 40px">{c.sub}</p>
+
+      <form class="contact" id="contact-form" data-endpoint={site.formEndpoint} data-mailto={site.email} data-ok={c.ok} data-err={c.err} data-sending={c.sending} novalidate>
+        <label>{c.name}<input name="name" required autocomplete="name" /></label>
+        <label>{c.email}<input name="email" type="email" required autocomplete="email" /></label>
+        <label>{c.message}<textarea name="message" required></textarea></label>
+        <input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div><button class="btn" type="submit" data-label={c.send}>{c.send}</button></div>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p style="margin-top: 40px">
+        {c.or} <a href={`mailto:${site.email}`} data-track="click_email"><strong>{site.email}</strong></a>
+      </p>
+      <p><a class="btn outline" href={site.cvUrl} target="_blank" rel="noopener" data-track="download_cv">{c.cv}</a></p>
+    </div>
+  </section>
+</Page>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector('.status') as HTMLElement;
+    const btn = form.querySelector('button') as HTMLButtonElement;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const data = new FormData(form);
+      if (data.get('_gotcha')) return;
+      const { endpoint, mailto, ok, err, sending } = form.dataset as Record<string, string>;
+      if (!endpoint) {
+        const body = encodeURIComponent(`${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`);
+        location.href = `mailto:${mailto}?subject=Portfolio&body=${body}`;
+        return;
+      }
+      btn.disabled = true; status.textContent = sending;
+      try {
+        const r = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!r.ok) throw new Error();
+        status.textContent = ok; form.reset();
+        (window as any).gtag?.('event', 'form_submit');
+      } catch { status.textContent = err; }
+      btn.disabled = false;
+    });
+  }
+</script>

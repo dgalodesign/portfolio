@@ -1,0 +1,36 @@
+---
+import Base from './Base.astro';
+import { t, other, type Lang } from '../i18n';
+import { site } from '../site';
+
+interface Props { lang: Lang; title?: string; description?: string; path?: string; noindex?: boolean; alt?: string }
+const { lang, alt, ...rest } = Astro.props;
+const d = t[lang];
+const cur = Astro.url.pathname;
+const swap = alt ?? `/${other(lang)}/${rest.path ?? ''}`;
+---
+<Base lang={lang} {...rest}>
+  <header class="top" slot="header">
+    <div class="wrap">
+      <a class="logo" href={`/${lang}/`}>{site.name}</a>
+      <nav class="main" aria-label="Principal">
+        <a class="nav-work" href={`/${lang}/#work`}>{d.nav.work}</a>
+        <a href={`/${lang}/sobre-mi/`} aria-current={cur === `/${lang}/sobre-mi/` ? 'page' : undefined}>{d.nav.about}</a>
+        <a href={`/${lang}/contacto/`} aria-current={cur === `/${lang}/contacto/` ? 'page' : undefined}>{d.nav.contact}</a>
+        <a href={swap} hreflang={other(lang)} lang={other(lang)}>{other(lang).toUpperCase()}</a>
+        <button class="icon-btn" data-theme-toggle aria-label={d.theme}>◐</button>
+      </nav>
+    </div>
+  </header>
+  <slot />
+  <footer class="foot" slot="footer">
+    <div class="wrap">
+      <span>{d.footer}</span>
+      <span>
+        <a href={site.linkedin} rel="noopener" target="_blank" data-track="click_linkedin">LinkedIn</a>
+        <a href={site.instagram} rel="noopener" target="_blank" data-track="click_instagram">Instagram</a>
+        <a href={`/${lang}/privacidad/`}>{d.privacy}</a>
+      </span>
+    </div>
+  </footer>
+</Base>

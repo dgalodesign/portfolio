@@ -1,0 +1,70 @@
+---
+import Page from '../../layouts/Page.astro';
+import { t, langs, type Lang } from '../../i18n';
+import { site } from '../../site';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const a = t[lang].about;
+---
+<Page lang={lang} title={a.title} path="sobre-mi/">
+  <section class="block">
+    <div class="wrap about">
+      <div class="prose">
+        <p class="badge">{a.hello}</p>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.2rem); margin: 20px 0 28px">{a.lead}</h1>
+        {a.body.map((p) => <p>{p}</p>)}
+        <p><a class="btn outline" href={site.cvUrl} target="_blank" rel="noopener" data-track="download_cv">{a.cv} ↗</a></p>
+      </div>
+
+      <div class="row">
+        <h2>{a.experience}</h2>
+        <div class="list">
+          {a.jobs.map(([role, company, place, dates, bullets]) => (
+            <article class="item">
+              <h3>{role} <span>@ {company}</span></h3>
+              <p class="meta-line">{place} · {dates}</p>
+              <ul>{(bullets as readonly string[]).map((b) => <li>{b}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="row">
+        <h2>{a.skills}</h2>
+        <div class="list">
+          {a.skillGroups.map(([g, items]) => (
+            <div class="item">
+              <h3>{g}</h3>
+              <div class="chips">{(items as readonly string[]).map((x) => <span>{x}</span>)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="row">
+        <h2>{a.awards}</h2>
+        <div class="list">
+          {a.awardList.map(([name, href, label]) => (
+            <div class="item"><h3>{name}</h3><p><a href={href} target="_blank" rel="noopener">{label} ↗</a></p></div>
+          ))}
+        </div>
+      </div>
+
+      <div class="row">
+        <h2>{a.education}</h2>
+        <div class="list">
+          {a.eduList.map(([name, sub, href, label]) => (
+            <div class="item">
+              <h3>{name}</h3>
+              <p class="meta-line">{sub}</p>
+              {href && <p><a href={href} target="_blank" rel="noopener">{label} ↗</a></p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Page>

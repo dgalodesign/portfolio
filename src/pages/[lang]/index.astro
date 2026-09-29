@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import { t, tools, langs, type Lang } from '../../i18n';
+import { site } from '../../site';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = t[lang];
+const cases = (await getCollection('casos', (c) => c.data.lang === lang)).sort((a, b) => a.data.order - b.data.order);
+const words = d.hero.title.split(' ');
+const last = words.pop();
+---
+<Page lang={lang}>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge"><span class={`dot ${site.available ? '' : 'off'}`}></span>{site.available ? d.available : d.unavailable}</span>
+      <h1>{words.join(' ')} <em>{last}</em></h1>
+      <p class="sub">{d.hero.sub}</p>
+      <div class="cta-row">
+        <a class="btn" href="#work" data-track="cta_work">{d.hero.ctaWork} ↓</a>
+        <a class="btn outline" href={`/${lang}/contacto/`} data-track="cta_contact">{d.hero.ctaContact}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div>{[...tools, ...tools, ...tools, ...tools].map((x) => <span>{x}</span>)}</div>
+  </div>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>{d.work.title}</h2>
+      <div class="grid">
+        {cases.map((c) => {
+          const slug = c.id.split('/').pop();
+          return (
+            <a class="card reveal" href={`/${lang}/proyectos/${slug}/`}>
+              <span class="num">{String(c.data.order).padStart(2, '0')}</span>
+              <h3>{c.data.title}</h3>
+              <p>{c.data.summary}</p>
+              <div class="meta">
+                {c.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+                {c.data.draft && <span class="tag draft">{d.work.draft}</span>}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="block services">
+    <div class="wrap">
+      <h2>{d.services.title}</h2>
+      <div class="grid">
+        {d.services.items.map(([h, p]) => (
+          <div class="card reveal"><h3>{h}</h3><p>{p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Page>
