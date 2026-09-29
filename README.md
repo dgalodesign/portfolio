@@ -17,7 +17,7 @@ npm run preview  # sirve dist/ localmente
 | Textos de la interfaz (ES/EN) | `src/i18n.ts` |
 | Casos de estudio | `src/content/casos/{es,en}/*.md` (poner `draft: false` al publicar) |
 | Estilos y tema | `src/styles/global.css` |
-| CV | `public/cv-es.pdf`, `public/cv-en.pdf` (provisionales) |
+| CV | enlace `cvUrl` en `src/site.ts` |
 | Imagen social | `public/og.png` |
 
 Todo lo marcado `TODO` es contenido provisional que debe reemplazarse.

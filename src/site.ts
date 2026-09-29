@@ -6,6 +6,8 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/dgalodesign/',
   instagram: 'https://www.instagram.com/dgalodesign/',
   formEndpoint: '', // TODO: endpoint de Formspree, ej. https://formspree.io/f/xxxxxxx
+  telegram: 'https://t.me/dgalodesign',
+  cvUrl: 'https://docs.google.com/document/d/1FishmgsLZkDjR-VG5yTQcO_VixCIlMvCtWfqhnOszXM/edit?usp=sharing',
   gaId: 'G-ZJBEJJF727',
   available: true,
 };

@@ -28,7 +28,7 @@ const c = d.contact;
       <p style="margin-top: 40px">
         {c.or} <a href={`mailto:${site.email}`} data-track="click_email"><strong>{site.email}</strong></a>
       </p>
-      <p><a class="btn outline" href={`/cv-${lang}.pdf`} download data-track="download_cv">{c.cv}</a></p>
+      <p><a class="btn outline" href={site.cvUrl} target="_blank" rel="noopener" data-track="download_cv">{c.cv}</a></p>
     </div>
   </section>
 </Page>

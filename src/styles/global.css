@@ -138,3 +138,14 @@ footer.foot a:hover { color: var(--text); }
   nav.main a { padding: 8px 7px; font-size: 0.85rem; white-space: nowrap; }
   nav.main a.nav-work { display: none; }
 }
+
+/* about */
+.about .row { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 48px 0; border-top: 1px solid var(--line); margin-top: 48px; }
+.about .row > h2 { font-size: clamp(1.4rem, 3vw, 2rem); text-transform: uppercase; letter-spacing: -0.01em; }
+.about .list { display: grid; gap: 28px; }
+.about .item h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
+.about .item h3 span { color: var(--muted); font-weight: 500; }
+.about .meta-line { color: var(--muted); font-size: 0.9rem; margin: 4px 0 8px; }
+.about ul { margin: 0; padding-left: 1.1em; color: var(--muted); }
+.about .item .chips { margin-top: 10px; }
+@media (min-width: 820px) { .about .row { grid-template-columns: 1fr 2fr; } }
