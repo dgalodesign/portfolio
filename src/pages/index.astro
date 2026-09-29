@@ -1,0 +1,18 @@
+---
+import { site } from '../site';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{site.name}</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${site.url}/es/`} />
+    <meta http-equiv="refresh" content="0; url=/es/" />
+    <script is:inline>
+      var l = (navigator.language || 'es').slice(0, 2) === 'en' ? 'en' : 'es';
+      location.replace('/' + l + '/');
+    </script>
+  </head>
+  <body><a href="/es/">Español</a> · <a href="/en/">English</a></body>
+</html>

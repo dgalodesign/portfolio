@@ -1,0 +1,18 @@
+---
+import Page from '../../layouts/Page.astro';
+import { t, langs, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = t[lang];
+---
+<Page lang={lang} title={d.privacyPage.title} path="privacidad/">
+  <section class="block">
+    <div class="wrap prose">
+      <h1 style="font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 24px">{d.privacyPage.title}</h1>
+      {d.privacyPage.body.map((p) => <p>{p}</p>)}
+    </div>
+  </section>
+</Page>
